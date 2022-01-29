@@ -1,0 +1,79 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div >
+	  <label for="name">Name: </label>
+	  <br/>
+	  <input id="name" type="text" formControlName="name">
+  </div>
+  <div *ngIf="name && name.invalid && (name.dirty || name.touched)">
+  		<div *ngIf="name.errors?.['required']">
+		    Name is required.
+		  </div>
+  </div>
+
+  <div>
+	  <label for="contact-number">Contact Number</label>
+	  <br/>
+	  <input id="contact-number" type="number" formControlName="contactNumber" [readOnly]="isUpdate">
+  </div>
+  <div *ngIf="contactNumber && contactNumber.invalid && ( contactNumber.dirty || contactNumber.touched)">
+  		<div *ngIf="contactNumber.errors?.['required']">
+		    Contact Number  is required.
+		  </div>
+		  <div *ngIf="!contactNumber.errors?.['required']">
+		  	Contact Number should be of 10 digit.
+		  </div>
+  </div>
+
+  <div>
+	  <label for="password">Password</label>
+	  <br/>
+	  <input id="password" type="text" formControlName="password">
+  </div>
+  <div *ngIf="password && password.invalid && ( password.dirty || password.touched)">
+  		<div *ngIf="password.errors?.['required']">
+		    Password  is required.
+		  </div>
+		  <div *ngIf="!password.errors?.['minLength']">
+		  	password should have at least five letters
+		  </div>
+  </div>
+  <div>
+	  <label for="role">Role</label>
+	  <br/>
+	  <input id="role" type="text" formControlName="role">
+  </div>
+  <div *ngIf="role && role.invalid && ( role.dirty || role.touched)">
+  		<div *ngIf="role.errors?.['required']">
+		    Role field is required.
+		  </div>
+  </div>
+
+
+  <div formGroupName="address">
+  		<div>
+  			<label for="state">State: </label>
+  			<br/>
+  			<input id="state" type="text" formControlName="state">
+  		</div>
+  		<div *ngIf="state && state.invalid && ( state.dirty || state.touched)">
+		  		<div *ngIf="state.errors?.['required']">
+				    state field is required.
+				  </div>
+		  </div>
+  		<div>
+  			<label for="district">District: </label>
+  			<br/>
+  			<input id="district" type="text" formControlName="district">
+  		</div>
+  		<div *ngIf="district && district.invalid && ( district.dirty || district.touched)">
+		  		<div *ngIf="district.errors?.['required']">
+				    District field is required.
+				  </div>
+		  </div>
+  		
+  </div >
+  <button type="submit" [disabled]="!userForm.valid" *ngIf="isUpdate">update</button>
+  <button type="submit" [disabled]="!userForm.valid" *ngIf="!isUpdate">Submit</button> 
+</form>
+
+

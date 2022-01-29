@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Contact Number</th>
+    <th>State</th>
+    <th>District</th>
+    <th> Role</th>
+  </tr>
+  <tr *ngFor ="let user of users">
+    <td>{{user.name|uppercase}}</td>
+    <td>{{user.contactNumber}}</td>
+    <td>{{user.address.state|uppercase}}</td>
+    <td>{{user.address.district|uppercase}}</td>
+    <td>{{user.role}}</td>
+  </tr>
+</table>
